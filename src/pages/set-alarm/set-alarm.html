@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Set Alarm</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+       Set Time
+       
+      </ion-card-title>
+      <button color='light' ion-button full>
+        <ion-datetime placeholder=`alarmObj.time` [(ngModel)]='alarmObj.time' displayFormat="hh:mm A" ></ion-datetime>
+      </button>
+      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>Description</ion-card-title>
+
+      <ion-list>
+        <ion-item>
+          <ion-label >Label</ion-label>
+          <ion-input [(ngModel)]='alarmObj.label' type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label >Sound</ion-label>
+          <ion-input [(ngModel)]='alarmObj.sound' type="text"></ion-input>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+      <button  color='secondary' width-100 ion-button block outline
+              (click)='saveAlarm(alarmObj.time,alarmObj.label,alarmObj.sound,$event)'
+       >
+        Save
+      </button>
+      <button navPop color='danger' width-100 ion-button block outline >
+        Cancel
+      </button>
+
+</ion-content>
