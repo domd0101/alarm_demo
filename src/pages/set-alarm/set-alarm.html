@@ -29,11 +29,15 @@
       <ion-list>
         <ion-item>
           <ion-label >Label</ion-label>
-          <ion-input [(ngModel)]='alarmObj.label' type="text"></ion-input>
+          <ion-input [(ngModel)]='alarmObj.label' type="text" text-right></ion-input>
         </ion-item>
         <ion-item>
           <ion-label >Sound</ion-label>
-          <ion-input [(ngModel)]='alarmObj.sound' type="text"></ion-input>
+           <ion-select [(ngModel)]="alarmObj.sound" interface="popover">
+            <ion-option value="Bells">Bells</ion-option>
+            <ion-option value="Whistle">Whistle</ion-option>
+            <ion-option value="Guitar">Guitar</ion-option>
+           </ion-select>
         </ion-item>
       </ion-list>
 
@@ -46,7 +50,7 @@
        >
         Save
       </button>
-      <button navPop color='danger' style="width:100%;" ion-button round >
+      <button navPop color='danger' style="width:100%;" ion-button round outline >
         Cancel
       </button>
     </div>

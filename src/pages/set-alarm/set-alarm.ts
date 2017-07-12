@@ -4,8 +4,6 @@ import { bake_cookie, read_cookie } from 'sfcookies'
 import moment from 'moment'
 
 
-import { HomePage } from '../home/home'
-
 
 @IonicPage()
 @Component({
@@ -28,13 +26,7 @@ export class SetAlarmPage {
       sound: sound,
       isMorning: (moment(time, 'HH:mm').format('hh:mm a').indexOf('p') > -1) ? false : true
     }
-
-    console.log("Alarm Obj",this.alarmObj);
-    console.log("time test", moment(time, 'HH:mm').format('hh:mm a').indexOf('p'));
-    console.log(this.alarmObj.isMorning);
     
-    
-
     bake_cookie(`AlarmObj${this.alarmObj.id}`,this.alarmObj)
 
     this.navCtrl.pop();
@@ -44,7 +36,6 @@ export class SetAlarmPage {
 
    readAlarm() {
      if(this.alarmObj.sound){
-       console.log("test failed");
       this.alarmObj = read_cookie(`AlarmObj${this.alarmObj.id}`)
       this.alarmObj.time = moment(this.alarmObj.time, 'hh:mm a').format('HH:mm')
      } else {
@@ -54,7 +45,7 @@ export class SetAlarmPage {
     }
 
   ionViewWillEnter() {
-    console.log("this is the id on the set-alarm",this.alarmObj.id)
+    
     this.readAlarm()
   }
 

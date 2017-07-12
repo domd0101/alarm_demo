@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SetAlarmPage } from '../set-alarm/set-alarm'
-import { bake_cookie, read_cookie } from 'sfcookies'
-import moment from 'moment'
+import { read_cookie } from 'sfcookies'
 
 @Component({
   selector: 'page-home',
@@ -17,12 +16,11 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams, 
-    public toastController: ToastController) {
+    public toastController: ToastController
+  ) {
   }
 
   goToSet($event, alarm){
-    console.log("this is the homeObj",alarm);
-    
     this.navCtrl.push(SetAlarmPage, alarm)
   }
 
@@ -34,7 +32,8 @@ export class HomePage {
       time: '01:00 pm',
       label: 'Untitled'
     })
-    console.log(this.alarms)
+    console.log(this.alarms);
+    
   }
 
   deleteAlarm(index){
@@ -43,7 +42,16 @@ export class HomePage {
 
   readAlarms() {
     for(var i=1; i<this.alarms.length+1; i++){
-      this.alarms[i-1] = read_cookie(`AlarmObj${i}`)
+      if (this.alarms[i-1].sound) {
+        console.log("passed");
+        this.alarms[i-1] = read_cookie(`AlarmObj${i}`)
+      } else {
+        this.alarms[i-1] =  {
+          id: this.count,
+          time: '01:00 pm',
+          label: 'Untitled'
+        }
+      }
     }
   }
 
@@ -52,8 +60,7 @@ export class HomePage {
       if (read_cookie(`AlarmObj${i}`).id) {
         this.alarms.push(read_cookie(`AlarmObj${i}`))
         this.count++ 
-      } else { console.log('not a thing');
-      }
+      } 
     }
   }
 
@@ -74,12 +81,11 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    console.log(this.alarms);
     this.readAlarms() 
   }
 
   ionViewDidLoad() {
-    console.log('working');
-    
     this.readAlarms1()
   }
 
