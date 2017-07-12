@@ -1,28 +1,28 @@
 <ion-header>
 
-  <ion-navbar color='primary'>
+  <ion-navbar color='dark'>
     <ion-title>Set Alarm</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content >
+<ion-content style='background-color:#333333' >
 
-  <ion-card>
+  <ion-card color='light'>
     <ion-card-content>
       <ion-card-title>
        Set Time
        
       </ion-card-title>
-      <button color='light' ion-button full>
+      <button style="background:#333333" ion-button round full>
         <ion-datetime placeholder=`alarmObj.time` [(ngModel)]='alarmObj.time' displayFormat="hh:mm A" ></ion-datetime>
       </button>
       
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card color='light'>
     <ion-card-content>
       <ion-card-title>Description</ion-card-title>
 
@@ -40,13 +40,15 @@
     </ion-card-content>
   </ion-card>
 
-      <button  color='secondary' width-100 ion-button block outline
+    <div style='margin-top:15%;padding:5%;'>
+      <button  color='save' style="width:100%;" ion-button round
               (click)='saveAlarm(alarmObj.time,alarmObj.label,alarmObj.sound,$event)'
        >
         Save
       </button>
-      <button navPop color='danger' width-100 ion-button block outline >
+      <button navPop color='danger' style="width:100%;" ion-button round >
         Cancel
       </button>
+    </div>
 
 </ion-content>

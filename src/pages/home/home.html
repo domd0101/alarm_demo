@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar icon-right color='primary'>
+  <ion-navbar icon-right color='dark'>
     
       <ion-buttons end>
         <button (click)='addAlarm()' ion-button>
@@ -14,15 +14,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content style='background-color:#333333'>
 
-  <ion-list>
+  <ion-list no-lines>
 
-  <ion-item-sliding *ngFor='let alarm of alarms' >
-    <ion-item text-left>
-      <ion-label style='font-size:20px'> <ion-icon name='clock-outline'></ion-icon>
-        {{alarm.label}} <br> Time: {{alarm.time}} </ion-label>            
-      <ion-toggle color='secondary' id=`alarm.id` (ionChange)="alarmToggle($event)"></ion-toggle>
+  <ion-item-sliding  *ngFor='let alarm of alarms' >
+    <ion-item [color]="alarm.isMorning ? 'secondary' : 'primary'">
+
+      <ion-label>
+        <div class="alarm-time">
+          <ion-icon name='clock-outline' item-start></ion-icon>
+          {{alarm.time}} 
+        </div>
+        
+           <p style="font-size: 20px">{{alarm.label}}</p>  
+      </ion-label>
+
+      <ion-toggle color='save' id=`alarm.id` (ionChange)="alarmToggle($event)" ></ion-toggle>
+
     </ion-item>
     <ion-item-options side="right">
       <button (click)='goToSet($event, alarm)' ion-button color="light">

@@ -12,6 +12,7 @@ export class HomePage {
   alarms = []
   count = 0
   alarmObj: any
+  
 
   constructor(
     public navCtrl: NavController,

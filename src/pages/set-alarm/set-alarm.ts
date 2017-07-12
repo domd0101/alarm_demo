@@ -20,15 +20,19 @@ export class SetAlarmPage {
   }
 
   saveAlarm(time,label,sound,$event){
-
+    
     this.alarmObj = {
       id: this.alarmObj.id,
       time: moment(time, 'HH:mm').format('hh:mm a'),
       label: label,
-      sound: sound
+      sound: sound,
+      isMorning: (moment(time, 'HH:mm').format('hh:mm a').indexOf('p') > -1) ? false : true
     }
 
-    console.log(this.alarmObj);
+    console.log("Alarm Obj",this.alarmObj);
+    console.log("time test", moment(time, 'HH:mm').format('hh:mm a').indexOf('p'));
+    console.log(this.alarmObj.isMorning);
+    
     
 
     bake_cookie(`AlarmObj${this.alarmObj.id}`,this.alarmObj)
